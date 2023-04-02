@@ -1,5 +1,9 @@
 # Astro Starter Kit: Minimal
 
+## Actual step
+
+[Run astro in dev mode](https://docs.astro.build/fr/tutorial/1-setup/2/#run-astro-in-dev-mode)
+
 ```
 npm create astro@latest -- --template minimal
 ```
