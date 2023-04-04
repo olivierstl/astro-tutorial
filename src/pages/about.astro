@@ -1,6 +1,5 @@
 ---
-import Header from '../components/Header.astro'
-import Footer from '../components/Footer.astro'
+import BaseLayout from '../layouts/BaseLayout.astro'
 
 import '../assets/styles/main.css'
 
@@ -24,53 +23,36 @@ const fontWeight = `bold`
 const textCase = `uppercase`
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
-    <style define:vars={{skillColor, fontWeight, textCase}}>
-      h1 {
-        color: purple;
-        font-size: 4rem;
-      }
-      .skill {
-        color: var(--skillColor);
-        font-weight: var(--fontWeight);
-        text-transform: var(--textCase);
-      }
-    </style>
-  </head>
-  <body>
-    <Header/>
+<BaseLayout pageTitle="Home">
+  <section class="section">
+    <h2 id="presentation" class="section-title">Long story short</h2>
+    <p>
+      Hi, I am {identity.firstName}, I live in {identity.country} and have been working in the web for more than 10 years. During those years, I had the chance to work in the fields of design and conception, front-end development or WordPress theme development. Since 2017, I work as a full-time front-end developer.
+    </p>
+    <p>
+      Familiar with <abbr title="HyperText Markup Language">HTML</abbr>, <abbr title="Cascading Style Sheets">CSS</abbr> and <abbr title="JavaScript">JS</abbr> standards, <abbr title="Syntactically Awesome Style Sheets">SASS</abbr> or even Vue.js or TypeScript, my experience as a designer allows me to provide a transverse approach to the projects I join.
+    </p>
+    <p>
+      The first webconferences I attended made me aware of the need to put accessibility at the forefront, even before becoming a full-time front-end developer. Getting the certification "Develop accessible websites" at Access42, I officially specialize in this field in the early 2021.
+    </p>
+  </section>
 
-    <h1>{pageTitle}</h1>
-    <section class="section">
-      <h2 id="presentation" class="section-title">Long story short</h2>
-      <p>
-        Hi, I am {identity.firstName}, I live in {identity.country} and have been working in the web for more than 10 years. During those years, I had the chance to work in the fields of design and conception, front-end development or WordPress theme development. Since 2017, I work as a full-time front-end developer.
-      </p>
-      <p>
-        Familiar with <abbr title="HyperText Markup Language">HTML</abbr>, <abbr title="Cascading Style Sheets">CSS</abbr> and <abbr title="JavaScript">JS</abbr> standards, <abbr title="Syntactically Awesome Style Sheets">SASS</abbr> or even Vue.js or TypeScript, my experience as a designer allows me to provide a transverse approach to the projects I join.
-      </p>
-      <p>
-        The first webconferences I attended made me aware of the need to put accessibility at the forefront, even before becoming a full-time front-end developer. Getting the certification "Develop accessible websites" at Access42, I officially specialize in this field in the early 2021.
-      </p>
-    </section>
+  <p>My skills are:</p>
+  <ul>
+    {skills.map((skill) => <li class="skill">{skill}</li>)}
+  </ul>
 
-    <p>My skills are:</p>
-    <ul>
-      {skills.map((skill) => <li class="skill">{skill}</li>)}
-    </ul>
+  {happy && <p>I am happy to be learning Astro!</p>}
 
-    {happy && <p>I am happy to be learning Astro!</p>}
+  {finished && <p>I finished this tutorial!</p>}
 
-    {finished && <p>I finished this tutorial!</p>}
+  {goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
+</BaseLayout>
 
-    {goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
-
-    <Footer/>
-  </body>
-</html>
+<style define:vars={{skillColor, fontWeight, textCase}}>
+  .skill {
+    color: var(--skillColor);
+    font-weight: var(--fontWeight);
+    text-transform: var(--textCase);
+  }
+</style>
