@@ -2,7 +2,7 @@
 
 ## Actual step
 
-[Check in: Unit 5 ⁠-⁠ Astro API](https://docs.astro.build/fr/tutorial/5-astro-api/)
+[Check in: Unit 5 ⁠-⁠ Astro API](https://docs.astro.build/fr/tutorial/5-astro-api/3/#create-an-array-of-tags)
 
 ```
 npm create astro@latest -- --template minimal
