@@ -12,7 +12,7 @@ export async function getStaticPaths() {
   /** List of new routes created with param and props */
   return uniqueTags.map((tag) => {
     /** get routes that contains our tag */
-    const filteredPosts = posts.filter((post) => post.frontmatter.tags.includes(tag))
+    const filteredPosts = allPosts.filter((post) => post.frontmatter.tags.includes(tag))
 
     return {
       params: {tag},
