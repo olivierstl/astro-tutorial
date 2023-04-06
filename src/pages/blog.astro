@@ -1,8 +1,8 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
-import BlogPost from '../components/BlogPost.astro'
+import BaseLayout from '@layouts/BaseLayout.astro'
+import BlogPost from '@components/BlogPost.astro'
 
-import '../assets/styles/main.css'
+import '@assets/styles/main.css'
 
 const pageTitle = `Blog`
 const allPosts = await Astro.glob('../pages/posts/*.md')
