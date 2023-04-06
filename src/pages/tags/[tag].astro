@@ -6,45 +6,29 @@ export async function getStaticPaths() {
   /** Get posts list */
   const allPosts = await Astro.glob('../posts/*.md')
 
+  /** Returns an array with with unique tags */
+  const uniqueTags = [...new Set(allPosts.map((post) => post.frontmatter.tags).flat())]
+
   /** List of new routes created with param and props */
-  return [
-    {
-      params: { tag: "astro" },
-      props: {posts: allPosts}
-    },
-    {
-      params: { tag: "successes" },
-      props: {posts: allPosts}
-    },
-    {
-      params: { tag: "community" },
-      props: {posts: allPosts}
-    },
-    {
-      params: { tag: "blogging" },
-      props: {posts: allPosts}
-    },
-    {
-      params: { tag: "setbacks" },
-      props: {posts: allPosts}
-    },
-    {
-      params: { tag: "learning in public" },
-      props: {posts: allPosts}
-    },
-  ]
+  return uniqueTags.map((tag) => {
+    /** get routes that contains our tag */
+    const filteredPosts = posts.filter((post) => post.frontmatter.tags.includes(tag))
+
+    return {
+      params: {tag},
+      props: { posts: filteredPosts }
+    }
+  })
 }
 
 /** Receive data from generate routes above */
 const { posts } = Astro.props
 const { tag } = Astro.params
-
-const filteredPosts = posts.filter((post) => post.frontmatter.tags.includes(tag))
 ---
 <BaseLayout pageTitle={tag}>
   <p>Posts tagged with {tag}</p>
   <ul>
-    {filteredPosts.map((post) =>
+    {posts.map((post) =>
       <BlogPost url={post.url} title={post.frontmatter.title} />
     )}
   </ul>
